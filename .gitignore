@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/.vs/
+/SGSMTube/SGSMTube.csproj.user
+/SGSMTube/bin/Debug/
+/SGSMTube/obj
+/SGSMTube-Lib/obj
+/SGSMTube-Lib/bin/Debug/net8.0

@@ -1,0 +1,33 @@
+﻿<Application x:Class="SGSMTube.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SGSMTube"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ControlTemplate TargetType="Frame" x:Key="MyFrame">
+                <DockPanel Margin="7">
+                    <StackPanel Margin="7"
+                                Orientation="Horizontal"
+                                DockPanel.Dock="Top">
+                        <Button Content="Avast! Go back!"
+                                Command="{x:Static NavigationCommands.BrowseBack}"
+                                IsEnabled="{TemplateBinding CanGoBack}" />
+                        <Button Content="Forward you dogs!"
+                                Command="{x:Static NavigationCommands.BrowseForward}"
+                                IsEnabled="{TemplateBinding CanGoForward}" />
+                    </StackPanel>
+
+                    <Border BorderBrush="Green"
+                            Margin="7"
+                            BorderThickness="7"
+                            Padding="7"
+                            CornerRadius="7"
+                            Background="White">
+                        <ContentPresenter />
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

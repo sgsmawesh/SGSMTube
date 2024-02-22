@@ -1,0 +1,43 @@
+﻿<Window x:Class="SGSMTube.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SGSMTube"
+        mc:Ignorable="d"
+        Title="SGSMTube"
+        Height="450"
+        x:Name="mainWindow"
+        Loaded="mainWindow_Loaded"
+        Width="800">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*" />
+            <ColumnDefinition Width="59*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Margin="2,2,2,2"
+                    Orientation="Horizontal"
+                    Grid.ColumnSpan="2">
+            <Button x:Name="btnYtMp3"
+                    Content="Youtube Video to MP3"
+                    Padding="5"
+                    Click="btnYtMp3_Click" />
+        </StackPanel>
+        <DockPanel Grid.Row="1"
+                   Grid.ColumnSpan="2">
+            <Frame x:Name="_mainFrame"
+                   NavigationUIVisibility="Hidden"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch">
+            </Frame>
+        </DockPanel>
+    </Grid>
+
+</Window>
