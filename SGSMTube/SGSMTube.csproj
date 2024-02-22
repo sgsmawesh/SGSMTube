@@ -6,11 +6,11 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>favicon (1).ico</ApplicationIcon>
+    <ApplicationIcon>New Project.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="favicon (1).ico" />
+    <Content Include="New Project.ico" />
   </ItemGroup>
 
   <ItemGroup>
