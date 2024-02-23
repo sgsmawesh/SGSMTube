@@ -18,13 +18,19 @@ namespace SGSMTube_Lib.Models
 
         public async Task<IEnumerable<VideoDetailModel>?> SearchVideo(string keyword)
         {
-            var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword);
-            if (searchResults == null)
+            try
+            {
+                var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword);
+                if (searchResults == null)
+                    return null;
+                var result = new List<VideoDetailModel>();
+                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id }).ToList();
+                return result;
+            }
+            catch (System.Net.Http.HttpRequestException ex)
+            {
                 return null;
-            var result = new List<VideoDetailModel>();
-            result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id }).ToList();
-
-            return result;
+            }
         }
         public async Task<string> DownloadAudio(string videoUrl, IProgress<double>? progress)
         {

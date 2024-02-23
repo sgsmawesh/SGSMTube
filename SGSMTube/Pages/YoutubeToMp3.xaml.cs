@@ -35,7 +35,10 @@ namespace SGSMTube.Pages
             var items = new List<YoutubeVideoVM>();
             var videoSearchResults = await _downloader.SearchVideo(keyword);
             if (videoSearchResults == null)
+            {
+                progressPanel.Visibility = Visibility.Collapsed;
                 return;
+            }
             foreach (var item in videoSearchResults)
             {
                 var duration = item.Duration.HasValue

@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>New Project.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="New Project.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SGSMTube-Lib\SGSMTube-Lib.csproj" />

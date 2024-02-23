@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="NReco.VideoConverter" Version="1.2.1" />
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="YoutubeExplode" Version="6.3.12" />
   </ItemGroup>
 

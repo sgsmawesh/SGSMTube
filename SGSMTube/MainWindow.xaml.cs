@@ -22,5 +22,10 @@ namespace SGSMTube
         {
             _mainFrame.NavigationService.Navigate(new YoutubeToMp3());
         }
+
+        private void btnTagEditor_Click(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new Mp3TagEditorPage());
+        }
     }
 }
