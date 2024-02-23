@@ -28,7 +28,13 @@
             <Button x:Name="btnYtMp3"
                     Content="Youtube Video to MP3"
                     Padding="5"
+                    Margin="4 0 4 0"
                     Click="btnYtMp3_Click" />
+            <Button x:Name="btnTagEditor"
+                    Content="Mp3 Tag Editor"
+                    Padding="5"
+                    Margin="4 0 4 0"
+                    Click="btnTagEditor_Click" />
         </StackPanel>
         <DockPanel Grid.Row="1"
                    Grid.ColumnSpan="2">
