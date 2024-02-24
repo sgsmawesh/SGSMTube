@@ -8,7 +8,9 @@
       d:DesignHeight="450"
       d:DesignWidth="800"
       x:Name="youtubeToMp3Page"
-      Title="Youtube To MP3" Loaded="youtubeToMp3Page_Loaded">
+      xmlns:uc="clr-namespace:SGSMTube.UserControls"
+      Title="Youtube To MP3"
+      Loaded="youtubeToMp3Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -19,31 +21,23 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal">
-            <TextBlock Padding="5"
-                       Text="Search : "
-                       FontSize="18" />
-            <TextBox x:Name="txtSearchTerm"
-                     Width="400"
-                     Padding="5"
-                     FontSize="18" />
+            <uc:HintTextBox Placeholder="Enter your search term here"
+                            x:Name="txtSearchTerm"
+                            Margin="2"
+                            Width="400" />
             <Button Content="Search"
+                    Style="{StaticResource FlatButton}"
                     x:Name="btnSearch"
-                    Padding="5"
-                    FontSize="18"
+                    Margin="0 2 2 2"
                     Click="btnSearch_Click" />
         </StackPanel>
         <DockPanel x:Name="progressPanel"
                    Grid.Row="1"
                    Visibility="Collapsed">
             <ProgressBar Height="30"
-                         IsIndeterminate="True">
-                <ProgressBar.Foreground>
-                    <SolidColorBrush Color="white" />
-                </ProgressBar.Foreground>
-                <ProgressBar.Background>
-                    <SolidColorBrush Color="#007acc" />
-                </ProgressBar.Background>
-            </ProgressBar>
+                         IsIndeterminate="True"
+                         Background="{StaticResource ControlBackgroundBrush}"
+                         Foreground="{StaticResource ProgressBarForegroundBrush}" />
         </DockPanel>
         <DockPanel Grid.Row="2">
             <DataGrid x:Name="dgVideos"
@@ -65,6 +59,13 @@
                             </Style>
                         </DataGridCheckBoxColumn.ElementStyle>
                     </DataGridCheckBoxColumn>
+                    <DataGridTemplateColumn Header="Thumbnail">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding ThumbnailImage}" Height="100" Width="160" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Duration"
                                         Binding="{Binding Duration}"
                                         Width="100"
@@ -107,8 +108,12 @@
                            FontSize="16"
                            Margin="4 0 10 0"
                            x:Name="lblSelectedCount"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Stretch"
+                           Foreground="{StaticResource ControlForegroundBrush}"
                            Text="Selected : " />
                 <Button x:Name="btnDownloadNow"
+                        Style="{StaticResource FlatButton}"
                         Padding="4"
                         FontSize="16"
                         Content="Download Now"

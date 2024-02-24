@@ -4,30 +4,54 @@
              xmlns:local="clr-namespace:SGSMTube"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <ControlTemplate TargetType="Frame" x:Key="MyFrame">
-                <DockPanel Margin="7">
-                    <StackPanel Margin="7"
-                                Orientation="Horizontal"
-                                DockPanel.Dock="Top">
-                        <Button Content="Avast! Go back!"
-                                Command="{x:Static NavigationCommands.BrowseBack}"
-                                IsEnabled="{TemplateBinding CanGoBack}" />
-                        <Button Content="Forward you dogs!"
-                                Command="{x:Static NavigationCommands.BrowseForward}"
-                                IsEnabled="{TemplateBinding CanGoForward}" />
-                    </StackPanel>
 
-                    <Border BorderBrush="Green"
-                            Margin="7"
-                            BorderThickness="7"
-                            Padding="7"
-                            CornerRadius="7"
-                            Background="White">
-                        <ContentPresenter />
-                    </Border>
-                </DockPanel>
-            </ControlTemplate>
-        </ResourceDictionary>
+        <!-- Create a Brush with key ControlBackgroundBrush -->
+        <SolidColorBrush x:Key="ControlBackgroundBrush"
+                         Color="#1e1e1e" />
+        <SolidColorBrush x:Key="WindowBackgroundBrush"
+                         Color="#000000" />
+        <SolidColorBrush x:Key="ControlForegroundBrush"
+                         Color="#fafafa" />
+        <SolidColorBrush x:Key="WatermarkForegroundBrush"
+                         Color="#9a9a9a" />
+        <SolidColorBrush x:Key="ProgressBarForegroundBrush"
+                         Color="#007ACC" />
+
+        <Style x:Key="FlatButton"
+               TargetType="Button">
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Background"
+                    Value="{StaticResource ControlBackgroundBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ControlForegroundBrush}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ControlForegroundBrush}" />
+          
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Foreground"
+                            Value="{StaticResource ControlForegroundBrush}" />
+                    <Setter Property="Background"
+                            Value="{StaticResource ProgressBarForegroundBrush}" />
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
     </Application.Resources>
 </Application>

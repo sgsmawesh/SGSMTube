@@ -9,6 +9,7 @@
         Height="450"
         x:Name="mainWindow"
         Loaded="mainWindow_Loaded"
+        Background="{StaticResource WindowBackgroundBrush}"
         Width="800">
 
 
@@ -22,18 +23,20 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"
-                    Margin="2,2,2,2"
+                    Margin="10"
                     Orientation="Horizontal"
                     Grid.ColumnSpan="2">
             <Button x:Name="btnYtMp3"
+                    Style="{StaticResource FlatButton}"
                     Content="Youtube Video to MP3"
                     Padding="5"
                     Margin="4 0 4 0"
                     Click="btnYtMp3_Click" />
             <Button x:Name="btnTagEditor"
+                    Style="{StaticResource FlatButton}"
                     Content="Mp3 Tag Editor"
                     Padding="5"
-                    Margin="4 0 4 0"
+                    Margin="0 0 4 0"
                     Click="btnTagEditor_Click" />
         </StackPanel>
         <DockPanel Grid.Row="1"

@@ -10,5 +10,6 @@ namespace SGSMTube_Lib.Views
         public string Author { get; set; }
         public TimeSpan? Duration { get; set; }
         public VideoId VideoId { get; set; }
+        public string ThumbnailImage { get { return $"https://img.youtube.com/vi/{VideoId}/maxresdefault.jpg"; } }
     }
 }

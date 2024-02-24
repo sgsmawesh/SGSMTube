@@ -2,6 +2,8 @@
 using SGSMTube_Lib.Models;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SGSMTube.Pages
 {
@@ -40,6 +42,9 @@ namespace SGSMTube.Pages
                 lblCurrentTrackStatus.Text = "Fetching video information...";
                 lblTitle.Text = item.Title;
                 lblAuthor.Text = item.Author;
+                imgThumbnail.Source = new BitmapImage(new Uri(item.ThumbnailImage));
+                lblDuration.Text = item.Duration;
+                lblUrl.Text = item.VideoUrl;
                 IProgress<double> progress = new Progress<double>(val =>
                 {
                     lblCurrentTrackStatus.Text = "Downloading video...";

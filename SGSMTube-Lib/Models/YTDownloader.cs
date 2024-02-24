@@ -20,7 +20,7 @@ namespace SGSMTube_Lib.Models
         {
             try
             {
-                var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword);
+                var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword).CollectAsync(10);
                 if (searchResults == null)
                     return null;
                 var result = new List<VideoDetailModel>();

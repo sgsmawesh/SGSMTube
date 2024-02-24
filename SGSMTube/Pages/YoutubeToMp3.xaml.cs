@@ -44,7 +44,7 @@ namespace SGSMTube.Pages
                 var duration = item.Duration.HasValue
                                         ? item.Duration.Value.ToString("hh\\:mm\\:ss")
                                         : "00:00:00";
-                var video = new YoutubeVideoVM() { IsChecked = false, Author = item.Author, Duration = duration, Title = item.Title, VideoId = item.VideoId, VideoUrl = item.Url };
+                var video = new YoutubeVideoVM() { IsChecked = false, Author = item.Author, Duration = duration, Title = item.Title, VideoId = item.VideoId, VideoUrl = item.Url, ThumbnailImage = item.ThumbnailImage };
                 video.PropertyChanged += Video_PropertyChanged;
                 items.Add(video);
             }
