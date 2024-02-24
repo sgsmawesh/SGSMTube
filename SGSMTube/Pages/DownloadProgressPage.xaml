@@ -26,36 +26,115 @@
                    Text="Downloading 1/10 "
                    FontSize="20"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
-        <TextBlock x:Name="lblTitle"
-                   Grid.Row="1"
-                   Padding="4"
-                   Text="Title"
-                   FontSize="16"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
-        <TextBlock x:Name="lblAuthor"
-                   Grid.Row="2"
-                   Text="Author"
-                   Padding="4"
-                   FontSize="16"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Center"
+                   Foreground="{StaticResource ControlForegroundBrush}" />
+
+
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0"
+                   Grid.RowSpan="4"
+                   Height="250"
+                   Width="400"
+                   Source="http://i.imgur.com/aIf7B0P.jpg"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch"
+                   x:Name="imgThumbnail" />
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="0">
+                <TextBlock Text="Title"
+                           FontSize="20"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+                <TextBlock x:Name="lblTitle"
+                           Padding="4"
+                           Text="Title"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="1">
+                <TextBlock Text="Author"
+                           FontSize="20"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+                <TextBlock x:Name="lblAuthor"
+                           Text="Author"
+                           Padding="4"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="2">
+                <TextBlock Text="Duration"
+                           FontSize="20"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+                <TextBlock x:Name="lblDuration"
+                           Text="Duration"
+                           Padding="4"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Grid.Row="3">
+                <TextBlock Text="Duration"
+                           FontSize="20"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+                <TextBlock x:Name="lblUrl"
+                           Text="URL"
+                           Padding="4"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           Foreground="{StaticResource ControlForegroundBrush}" />
+            </StackPanel>
+
+        </Grid>
+
+
+
         <ProgressBar x:Name="prgProgress"
                      Grid.Row="3"
                      Visibility="Visible"
                      Maximum="100"
                      Minimum="0"
                      Height="30"
-                     Margin="4 0 4 0" />
+                     Margin="4 0 4 0"
+                     Background="{StaticResource ControlBackgroundBrush}"
+                     Foreground="{StaticResource ProgressBarForegroundBrush}" />
         <TextBlock x:Name="lblCurrentTrackStatus"
                    Grid.Row="4"
                    Text="Current Status"
                    Padding="4"
                    FontSize="26"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Left" />
+                   HorizontalAlignment="Left"
+                   Foreground="{StaticResource ControlForegroundBrush}" />
         <Button x:Name="btnClose"
+                Style="{StaticResource FlatButton}"
                 Grid.Row="5"
                 IsEnabled="false"
                 Content="Close"

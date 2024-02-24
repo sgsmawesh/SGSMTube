@@ -63,6 +63,7 @@ namespace SGSMTube.ViewModels
 
         public string VideoId { get; set; }
         public string VideoUrl { get; set; }
+        public string ThumbnailImage { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

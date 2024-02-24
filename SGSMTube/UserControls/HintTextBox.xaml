@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SGSMTube.UserControls.HintTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SGSMTube.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="40"
+             d:DesignWidth="250">
+    <Grid Background="{StaticResource ControlBackgroundBrush}">
+        <TextBox x:Name="txtInput"
+                 VerticalAlignment="Center"
+                 Background="Transparent"
+                 Foreground="{StaticResource ControlForegroundBrush}"
+                 FontSize="16"
+                 Padding="10"
+                 CaretBrush="{StaticResource ControlForegroundBrush}"
+                 FontWeight="Light"
+                 Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HintTextBox}}}"
+                 TextChanged="txtInput_TextChanged" />
+        <TextBlock x:Name="lblPlaceholder"
+                   Text="{Binding Placeholder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HintTextBox}}}"
+                   FontSize="16"
+                   FontWeight="Light"
+                   Margin="12,0,0,0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="{StaticResource WatermarkForegroundBrush}"
+                   Panel.ZIndex="-1" />
+        <Button x:Name="btnClear"
+                Style="{StaticResource FlatButton}"
+                Width="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Stretch"
+                Content="X"
+                Margin="1"
+                Foreground="{StaticResource ControlForegroundBrush}"
+                BorderThickness="0"
+                Click="btnClear_Click" />
+
+
+    </Grid>
+</UserControl>
