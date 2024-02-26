@@ -16,6 +16,10 @@
                          Color="#9a9a9a" />
         <SolidColorBrush x:Key="ProgressBarForegroundBrush"
                          Color="#007ACC" />
+        <SolidColorBrush x:Key="DisabledBackgroundBrush"
+                         Color="#555555" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush"
+                         Color="#9a9a9a" />
 
         <Style x:Key="FlatButton"
                TargetType="Button">

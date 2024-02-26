@@ -13,7 +13,7 @@
                  Background="Transparent"
                  Foreground="{StaticResource ControlForegroundBrush}"
                  FontSize="16"
-                 Padding="10"
+                 Padding="10 10 30 10"
                  CaretBrush="{StaticResource ControlForegroundBrush}"
                  FontWeight="Light"
                  Text="{Binding Text, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:HintTextBox}}}"

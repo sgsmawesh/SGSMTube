@@ -6,13 +6,11 @@
         xmlns:local="clr-namespace:SGSMTube"
         mc:Ignorable="d"
         Title="SGSMTube"
-        Height="450"
+        Height="600"
         x:Name="mainWindow"
         Loaded="mainWindow_Loaded"
         Background="{StaticResource WindowBackgroundBrush}"
-        Width="800">
-
-
+        Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="21*" />
