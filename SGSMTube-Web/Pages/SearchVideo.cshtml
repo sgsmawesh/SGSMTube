@@ -1,0 +1,87 @@
+﻿@page
+@model SGSMTube_Web.Pages.SearchVideoModel;
+@{
+    ViewData["Title"] = "Search Video";
+}
+<h1 class="display-4">
+    Search Videos
+</h1>
+<div class="row">
+    <div class="col-8">
+        <form method="post" asp-page-handler="OnPost">
+            <div class="input-group mb-3">
+                <input asp-for="Keyword" type="text" class="form-control" placeholder="Search your video here" aria-label="Search your video here" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+            </div>
+            <span asp-validation-for="Keyword" class="text-danger"></span>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+
+
+        <div class="container mt-5">
+            <div class="row">
+                @foreach (var item in Model.Results!)
+                {
+                    <div class="col-md-6">
+                        <div class="card">
+                            <img src="@item.ThumbnailImage" class="card-img" alt="@item.Title" style="height:300px">
+                            <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                
+                                    <div class="mb-1">
+                                        <h6 class="card-text">
+                                            @item.Title
+                                        </h6>
+                                    </div>
+                                    <div class="mb-1">
+                                        <h5 class="card-text">
+                                            @item.Author
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <h4 class="card-text">
+                                            @item.Duration!.Value.ToString("hh\\:mm\\:ss")
+                                        </h4>
+                                    </div>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+
+        <table class="d-none table table-secondary">
+            <thead>
+                <tr>
+                    <th>Thumbnail</th>
+                    <th>Duration</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ThumbnailImage" style="width:300px; height:200px" />
+                        </td>
+                        <td>
+                            @item.Duration!.Value.ToString("hh\\:mm\\:ss")
+                        </td>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>
+                            @item.Author
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

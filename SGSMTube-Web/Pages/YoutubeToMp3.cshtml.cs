@@ -33,11 +33,6 @@ namespace SGSMTube_Web.Pages
                     }
 
                     return File(file, "application/octet-stream", "my-test-video02.webm");
-
-                    //return new FileStreamResult(file, "application/octet-stream")
-                    //{
-                    //    FileDownloadName = "my-test-video.webm"
-                    //};
                 }
                 catch (Exception ex)
                 {

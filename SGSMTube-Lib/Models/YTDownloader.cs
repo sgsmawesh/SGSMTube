@@ -24,7 +24,7 @@ namespace SGSMTube_Lib.Models
                 if (searchResults == null)
                     return null;
                 var result = new List<VideoDetailModel>();
-                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id }).ToList();
+                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id.Value, ThumbnailImage= $"https://img.youtube.com/vi/{video.Id.Value}/maxresdefault.jpg" }).ToList();
                 return result;
             }
             catch (System.Net.Http.HttpRequestException ex)
