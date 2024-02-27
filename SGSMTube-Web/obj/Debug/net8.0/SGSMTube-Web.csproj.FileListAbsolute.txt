@@ -29,10 +29,6 @@ D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Debug\net8.0\refint\SGSMTu
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Debug\net8.0\SGSMTube-Web.pdb
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Debug\net8.0\SGSMTube-Web.genruntimeconfig.cache
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Debug\net8.0\ref\SGSMTube-Web.dll
-D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\AngleSharp.dll
-D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\NReco.VideoConverter.dll
-D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\TagLibSharp.dll
-D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\YoutubeExplode.dll
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\SGSMTube-Lib.dll
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\bin\Debug\net8.0\SGSMTube-Lib.pdb
 D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Debug\net8.0\SGSMTube-Web.csproj.AssemblyReference.cache

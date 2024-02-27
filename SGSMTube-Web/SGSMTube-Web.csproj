@@ -14,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGSMTube-Lib\SGSMTube-Lib.csproj" />
+    <Reference Include="SGSMTube-Lib">
+      <HintPath>..\SGSMTube-Lib\bin\Release\net8.0\SGSMTube-Lib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
