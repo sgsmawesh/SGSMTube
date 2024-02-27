@@ -1,0 +1,124 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SGSMTube-Web/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.19.6",
+          "SGSMTube-Lib": "1.0.0"
+        },
+        "runtime": {
+          "SGSMTube-Web.dll": {}
+        }
+      },
+      "AngleSharp/1.0.7": {
+        "dependencies": {
+          "System.Text.Encoding.CodePages": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/AngleSharp.dll": {
+            "assemblyVersion": "1.0.7.0",
+            "fileVersion": "1.0.7.0"
+          }
+        }
+      },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.6": {},
+      "NReco.VideoConverter/1.2.1": {
+        "runtime": {
+          "lib/netstandard2.0/NReco.VideoConverter.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        }
+      },
+      "System.Text.Encoding.CodePages/8.0.0": {},
+      "TagLibSharp/2.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/TagLibSharp.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.0"
+          }
+        }
+      },
+      "YoutubeExplode/6.3.12": {
+        "dependencies": {
+          "AngleSharp": "1.0.7"
+        },
+        "runtime": {
+          "lib/net5.0/YoutubeExplode.dll": {
+            "assemblyVersion": "6.3.12.0",
+            "fileVersion": "6.3.12.0"
+          }
+        }
+      },
+      "SGSMTube-Lib/1.0.0": {
+        "dependencies": {
+          "NReco.VideoConverter": "1.2.1",
+          "TagLibSharp": "2.3.0",
+          "YoutubeExplode": "6.3.12"
+        },
+        "runtime": {
+          "SGSMTube-Lib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SGSMTube-Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AngleSharp/1.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jZg7lDcrXRiIC8VBluuGKOCMR9mc4CIRX5vpQJ8fcgafs6T6plOzKHhAn3lJEwXorrltd9p1WtRxxhFpRBACbg==",
+      "path": "anglesharp/1.0.7",
+      "hashPath": "anglesharp.1.0.7.nupkg.sha512"
+    },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7GOQdMzQcH7o/bPFL/I2kQEgMnq2pYZ+exhGb9nNqs624K9w2jB2zieh4sOH9+a01i/G9iTWfeUI3IGMF7SKNg==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.19.6",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512"
+    },
+    "NReco.VideoConverter/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-d/V78hRW6Iqi9+lNrivCWL9qMiiJ8WCrwN1wpEvGq+3mE3uIy7VYhkgHrJBkUzx4RRQKEJ9UvCvVb+0ELIbGWg==",
+      "path": "nreco.videoconverter/1.2.1",
+      "hashPath": "nreco.videoconverter.1.2.1.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OZIsVplFGaVY90G2SbpgU7EnCoOO5pw1t4ic21dBF3/1omrJFpAGoNAVpPyMVOC90/hvgkGG3VFqR13YgZMQfg==",
+      "path": "system.text.encoding.codepages/8.0.0",
+      "hashPath": "system.text.encoding.codepages.8.0.0.nupkg.sha512"
+    },
+    "TagLibSharp/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Qo4z6ZjnIfbR3Us1Za5M2vQ97OWZPmODvVmepxZ8XW0UIVLGdO2T63/N3b23kCcyiwuIe0TQvMEQG8wUCCD1mA==",
+      "path": "taglibsharp/2.3.0",
+      "hashPath": "taglibsharp.2.3.0.nupkg.sha512"
+    },
+    "YoutubeExplode/6.3.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nOesItK2+YFK0gVeM6aVdTq+Qld6Jd1AcLkAUI68MoFv55L1HpX8cRaWHM37263NO3kK/TBO0SCRJsMyyVcTXA==",
+      "path": "youtubeexplode/6.3.12",
+      "hashPath": "youtubeexplode.6.3.12.nupkg.sha512"
+    },
+    "SGSMTube-Lib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

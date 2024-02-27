@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0DJQqVqTX/GhLETccNZZ9+q78EKXYagN2YB+DIcnYdJ4KLwVjPNWaxdsPe9JD0KKodf4bDHQLqy9CHY6dJIdUQ==",
+  "success": true,
+  "projectFilePath": "D:\\SGSM\\Workspace\\Git-Repos\\SGSMTube\\SGSMTube-Web\\SGSMTube-Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\anglesharp\\1.0.7\\anglesharp.1.0.7.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\nreco.videoconverter\\1.2.1\\nreco.videoconverter.1.2.1.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\system.text.encoding.codepages\\8.0.0\\system.text.encoding.codepages.8.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\taglibsharp\\2.3.0\\taglibsharp.2.3.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\youtubeexplode\\6.3.12\\youtubeexplode.6.3.12.nupkg.sha512"
+  ],
+  "logs": []
+}

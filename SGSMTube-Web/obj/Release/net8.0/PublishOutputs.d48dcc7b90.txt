@@ -1,0 +1,13 @@
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Web.exe
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\appsettings.json
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Web.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Web.deps.json
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Web.runtimeconfig.json
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Web.pdb
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\AngleSharp.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\NReco.VideoConverter.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\TagLibSharp.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\YoutubeExplode.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Lib.dll
+D:\SGSM\Workspace\Git-Repos\SGSMTube\SGSMTube-Web\obj\Release\net8.0\PubTmp\Out\SGSMTube-Lib.pdb

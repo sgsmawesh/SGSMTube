@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGSMTube-Lib", "SGSMTube-Li
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGSMTube", "SGSMTube\SGSMTube.csproj", "{8841E864-0EB4-4D98-BD9F-009726108692}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGSMTube-Web", "SGSMTube-Web\SGSMTube-Web.csproj", "{1E54B2CB-8E30-43EE-B650-512AFE69AF1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8841E864-0EB4-4D98-BD9F-009726108692}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8841E864-0EB4-4D98-BD9F-009726108692}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8841E864-0EB4-4D98-BD9F-009726108692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E54B2CB-8E30-43EE-B650-512AFE69AF1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E54B2CB-8E30-43EE-B650-512AFE69AF1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E54B2CB-8E30-43EE-B650-512AFE69AF1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E54B2CB-8E30-43EE-B650-512AFE69AF1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

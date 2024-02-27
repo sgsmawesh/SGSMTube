@@ -41,10 +41,20 @@ namespace SGSMTube_Lib.Models
             string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
             string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
             string vidFilePath = Path.Combine(Utils.GetSaveFolderPath(), videoFileName);
-            string mp3FilePath = Path.Combine(Utils.GetSaveFolderPath(), videoFileNameWithoutExtn + ".mp3");
             await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
-            Console.WriteLine("\r\nConverting to MP3...");
             return vidFilePath;
+        }
+        public async Task<Stream> GetVideoStream(string videoUrl, IProgress<double>? progress)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
+            var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            string extn = streamInfo.Container.Name.ToLower();
+            string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
+            string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
+            var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
+            stream.Seek(0, SeekOrigin.Begin);
+            return stream;
         }
 
         public async Task<string> ConvertVideoToMp3(string vidFilePath)
