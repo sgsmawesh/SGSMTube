@@ -24,7 +24,7 @@ namespace SGSMTube_Lib.Models
                 if (searchResults == null)
                     return null;
                 var result = new List<VideoDetailModel>();
-                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id.Value, ThumbnailImage= $"https://img.youtube.com/vi/{video.Id.Value}/maxresdefault.jpg" }).ToList();
+                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id.Value, ThumbnailImage = $"https://img.youtube.com/vi/{video.Id.Value}/maxresdefault.jpg" }).ToList();
                 return result;
             }
             catch (System.Net.Http.HttpRequestException ex)
@@ -44,7 +44,7 @@ namespace SGSMTube_Lib.Models
             await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
             return vidFilePath;
         }
-        public async Task<Stream> GetVideoStream(string videoUrl, IProgress<double>? progress)
+        public async Task<Tuple<Stream, string>> GetVideoStream(string videoUrl, IProgress<double>? progress)
         {
             var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
             var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
@@ -54,7 +54,7 @@ namespace SGSMTube_Lib.Models
             string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
             var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
             stream.Seek(0, SeekOrigin.Begin);
-            return stream;
+            return new Tuple<Stream, string>(stream, videoFileName);
         }
 
         public async Task<string> ConvertVideoToMp3(string vidFilePath)

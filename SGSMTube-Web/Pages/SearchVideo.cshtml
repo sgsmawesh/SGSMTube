@@ -32,7 +32,9 @@
                                 
                                     <div class="mb-1">
                                         <h6 class="card-text">
-                                            @item.Title
+                                        <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
+                                                @item.Title
+                                            </a>
                                         </h6>
                                     </div>
                                     <div class="mb-1">

@@ -13,37 +13,37 @@ namespace SGSMTube_Web.Pages
         {
             _downloader = new YTDownloader();
         }
-        
 
-        public async Task<IActionResult> OnGetAsync(bool download = false)
+
+        public async Task<IActionResult> OnGetAsync(string videoUrl)
         {
-            if (download)
+            //if (download)
+            //{
+            Debug.WriteLine("Download started");
+            IProgress<double> progress = new Progress<double>((p) => { Debug.WriteLine(p); });
+
+            try
             {
-                Debug.WriteLine("Download started");
-                IProgress<double> progress = new Progress<double>((p) => { Debug.WriteLine(p); });
+                var fileInfo = await _downloader.GetVideoStream(videoUrl, progress);
 
-                try
+                if (fileInfo == null)
                 {
-                    var file = await _downloader.GetVideoStream("https://youtu.be/7RMQksXpQSk", progress);
-
-                    if (file == null)
-                    {
-                        Debug.WriteLine("No file was downloaded.");
-                        return NotFound();
-                    }
-
-                    return File(file, "application/octet-stream", "my-test-video02.webm");
+                    Debug.WriteLine("No file was downloaded.");
+                    return NotFound();
                 }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"An error occurred: {ex.Message}");
-                    return StatusCode(500);
-                }
+
+                return File(fileInfo.Item1, "application/octet-stream", fileInfo.Item2);
             }
-            else
+            catch (Exception ex)
             {
-                return StatusCode(200);
+                Debug.WriteLine($"An error occurred: {ex.Message}");
+                return StatusCode(500, ex.Message);
             }
+            //}
+            //else
+            //{
+            //    return StatusCode(200);
+            //}
             // Handle the case where download is false...
         }
 
