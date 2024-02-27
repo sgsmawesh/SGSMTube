@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SGSMTube-Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67210bc422dd7829efdf5047081b7f5599db154a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d2262123009167f5dbd217479f854d1297e5852")]
 [assembly: System.Reflection.AssemblyProductAttribute("SGSMTube-Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SGSMTube-Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
