@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["SGSMTube-Web/SGSMTube-Web.csproj", "SGSMTube-Web/"]
-COPY ["../SGSMTube-Lib/SGSMTube-Lib.csproj", "SGSMTube-Lib/"]
+COPY ["./SGSMTube-Lib/SGSMTube-Lib.csproj", "SGSMTube-Lib/"]
 RUN dotnet restore "./SGSMTube-Web/SGSMTube-Web.csproj"
 COPY . .
 WORKDIR "/src/SGSMTube-Web"
