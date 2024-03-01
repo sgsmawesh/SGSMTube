@@ -44,7 +44,7 @@ namespace SGSMTube_Lib.Models
             await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
             return vidFilePath;
         }
-        public async Task<Tuple<Stream, string>> GetVideoStream(string videoUrl, IProgress<double>? progress)
+        public async Task<Tuple<byte[], string>> GetVideoStream(string videoUrl, IProgress<double>? progress)
         {
             var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
             var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
@@ -53,8 +53,9 @@ namespace SGSMTube_Lib.Models
             string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
             string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
             var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
-            stream.Seek(0, SeekOrigin.Begin);
-            return new Tuple<Stream, string>(stream, videoFileName);
+            //stream.Seek(0, SeekOrigin.Begin);
+            var mp3Bytes = await ConvertVideoToMp3(stream);
+            return Tuple.Create(mp3Bytes, videoFileNameWithoutExtn+".mp3");
         }
 
         public async Task<string> ConvertVideoToMp3(string vidFilePath)
@@ -69,6 +70,26 @@ namespace SGSMTube_Lib.Models
                 File.Delete(vidFilePath);
                 return mp3FilePath;
             });
+        }
+
+        public async Task<byte[]> ConvertVideoToMp3(Stream webmStream)
+        {
+            string videoFilePath = Path.GetTempFileName();
+            using (FileStream fileStream = File.Create(videoFilePath))
+            {
+                webmStream.Seek(0, SeekOrigin.Begin);
+                await webmStream.CopyToAsync(fileStream);
+            }
+            var mp3FilePath = Path.GetTempFileName();
+            var converter = new FFMpegConverter();
+            converter.ConvertMedia(videoFilePath, mp3FilePath, "mp3");
+
+            var mp3Bytes = await File.ReadAllBytesAsync(mp3FilePath);
+
+            await Task.Delay(500);
+            File.Delete(videoFilePath);
+            File.Delete(mp3FilePath);
+            return mp3Bytes;
         }
 
 
