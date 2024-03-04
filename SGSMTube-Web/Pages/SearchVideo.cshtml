@@ -44,8 +44,16 @@
                                     </div>
                                     <div>
                                         <h4 class="card-text">
-                                            @item.Duration!.Value.ToString("hh\\:mm\\:ss")
-                                        </h4>
+                                        @if (item.Duration!=null)
+                                        {
+                                         <span>
+                                        @item.Duration.Value.ToString("hh\\:mm\\:ss")
+                                            </span>
+                                        }else
+                                        {
+                                            <span>00:00:00</span>
+                                        }
+                                    </h4>
                                     </div>
                                  
                             </div>
