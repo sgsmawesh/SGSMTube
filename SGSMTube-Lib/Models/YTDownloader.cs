@@ -24,7 +24,7 @@ namespace SGSMTube_Lib.Models
                 if (searchResults == null)
                     return null;
                 var result = new List<VideoDetailModel>();
-                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id }).ToList();
+                result = searchResults.Select(video => new VideoDetailModel { Url = video.Url, Author = video.Author.ChannelTitle, Title = video.Title, Duration = video.Duration, VideoId = video.Id.Value, ThumbnailImage = $"https://img.youtube.com/vi/{video.Id.Value}/maxresdefault.jpg" }).ToList();
                 return result;
             }
             catch (System.Net.Http.HttpRequestException ex)
@@ -41,10 +41,21 @@ namespace SGSMTube_Lib.Models
             string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
             string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
             string vidFilePath = Path.Combine(Utils.GetSaveFolderPath(), videoFileName);
-            string mp3FilePath = Path.Combine(Utils.GetSaveFolderPath(), videoFileNameWithoutExtn + ".mp3");
             await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
-            Console.WriteLine("\r\nConverting to MP3...");
             return vidFilePath;
+        }
+        public async Task<Tuple<Stream, string>> GetVideoStream(string videoUrl, IProgress<double>? progress)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
+            var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            string extn = streamInfo.Container.Name.ToLower();
+            string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
+            string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
+            var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
+            stream.Seek(0, SeekOrigin.Begin);
+             
+            return new Tuple<Stream, string>(stream, videoFileName);
         }
 
         public async Task<string> ConvertVideoToMp3(string vidFilePath)
@@ -60,8 +71,6 @@ namespace SGSMTube_Lib.Models
                 return mp3FilePath;
             });
         }
-
-
         public async Task<byte[]> GetThumbnailImage(VideoId videoId)
         {
             using (var httpClient = new HttpClient())

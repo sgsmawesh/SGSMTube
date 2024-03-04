@@ -55,4 +55,6 @@ dkms.conf
 /SGSMTube/bin/Debug/
 /SGSMTube/obj
 /SGSMTube-Lib/obj
-/SGSMTube-Lib/bin/Debug/net8.0
+/SGSMTube-Lib/bin/
+/SGSMTube-Web/obj
+/SGSMTube-Web/bin
