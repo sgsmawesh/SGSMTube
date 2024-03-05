@@ -16,11 +16,11 @@ namespace SGSMTube_Lib.Models
             _youtubeClient = new YoutubeClient();
         }
 
-        public async Task<IEnumerable<VideoDetailModel>?> SearchVideo(string keyword)
+        public async Task<IEnumerable<VideoDetailModel>?> SearchVideo(string keyword, int howMany = 10)
         {
             try
             {
-                var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword).CollectAsync(10);
+                var searchResults = await _youtubeClient.Search.GetVideosAsync(keyword).CollectAsync(howMany);
                 if (searchResults == null)
                     return null;
                 var result = new List<VideoDetailModel>();
@@ -31,6 +31,22 @@ namespace SGSMTube_Lib.Models
             {
                 return null;
             }
+        }
+
+        public async Task<IEnumerable<VideoDetailModel>?> SearchVideoByUrl(string videoUrl)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            if (videoInfo == null) return null;
+            return new List<VideoDetailModel>() {
+                new VideoDetailModel
+                {
+                    Author = videoInfo.Author.ChannelTitle,
+                    Duration = videoInfo.Duration,
+                    ThumbnailImage = $"https://img.youtube.com/vi/{videoInfo.Id.Value}/maxresdefault.jpg", Title=videoInfo.Title,
+                    Url=videoInfo.Url,
+                    VideoId=videoInfo.Id, Description =videoInfo.Description
+                }
+            };
         }
         public async Task<string> DownloadAudio(string videoUrl, IProgress<double>? progress)
         {
@@ -44,7 +60,33 @@ namespace SGSMTube_Lib.Models
             await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
             return vidFilePath;
         }
-        public async Task<Tuple<Stream, string>> GetVideoStream(string videoUrl, IProgress<double>? progress)
+
+        public async Task<string> DownloadMuxedVideo(string videoUrl, IProgress<double>? progress)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
+            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestBitrate();
+            string extn = streamInfo.Container.Name.ToLower();
+            string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
+            string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
+            string vidFilePath = Path.Combine(Utils.GetSaveFolderPath(), videoFileName);
+            await _youtubeClient.Videos.Streams.DownloadAsync(streamInfo, vidFilePath, progress);
+            return vidFilePath;
+        }
+        public async Task<Tuple<Stream, string>> GetMuxedVideoStream(string videoUrl, IProgress<double>? progress)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
+            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestBitrate();
+            string extn = streamInfo.Container.Name.ToLower();
+            string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
+            string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
+            var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
+            stream.Seek(0, SeekOrigin.Begin);
+
+            return new Tuple<Stream, string>(stream, videoFileName);
+        }
+        public async Task<Tuple<Stream, string>> GetAudioOnlyStream(string videoUrl, IProgress<double>? progress)
         {
             var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
             var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
@@ -54,7 +96,7 @@ namespace SGSMTube_Lib.Models
             string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
             var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
             stream.Seek(0, SeekOrigin.Begin);
-             
+
             return new Tuple<Stream, string>(stream, videoFileName);
         }
 

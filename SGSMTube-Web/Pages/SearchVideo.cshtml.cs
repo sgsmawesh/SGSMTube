@@ -39,7 +39,21 @@ namespace SGSMTube_Web.Pages
             {
                 return Page();
             }
-            var searchResult = await _downloader.SearchVideo(Keyword);
+
+            // Check if Keyword is a Url
+            Uri uriResult;
+            bool isUrl = Uri.TryCreate(Keyword, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+            IEnumerable<VideoDetailModel>? searchResult = null;
+            if (isUrl)
+            {
+                searchResult = await _downloader.SearchVideoByUrl(Keyword);
+            }
+            else
+            {
+                searchResult = await _downloader.SearchVideo(Keyword);
+            }
 
             HttpContext.Session.SetString("searchResult", JsonConvert.SerializeObject(searchResult));
             return RedirectToPage();

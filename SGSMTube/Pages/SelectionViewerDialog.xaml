@@ -1,0 +1,19 @@
+﻿<Window x:Class="SGSMTube.Pages.SelectionViewerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SGSMTube.Pages"
+        mc:Ignorable="d"
+        Title="SelectionViewerDialog"
+        Height="450"
+        Width="800"
+        WindowStyle="None">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Label FontSize="22">
+            This is a Dialog Box, Created using a Window
+        </Label>
+        <Button x:Name="closeButton" Click="closeButton_Click" Style="{StaticResource FlatButton}" Width="150"
+                Content="Close" />
+    </StackPanel>
+</Window>

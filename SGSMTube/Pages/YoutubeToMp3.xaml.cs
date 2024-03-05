@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using SGSMTube.ViewModels;
 using SGSMTube_Lib.Models;
+using SGSMTube_Lib.Views;
 
 namespace SGSMTube.Pages
 {
@@ -28,12 +29,30 @@ namespace SGSMTube.Pages
             string keyword = txtSearchTerm.Text;
             if (string.IsNullOrEmpty(keyword))
                 return;
+            string strHowMany = txtHowManyResults.Text;
+            int howMany = 0;
+            int.TryParse(strHowMany, out howMany);
+            if (howMany == 0) howMany = 10;
+            // Check if keyword is a search term or URL
+            Uri uriResult;
+            bool isUrl = Uri.TryCreate(keyword, UriKind.Absolute, out uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
 
             dgVideos.ItemsSource = null;
-
             progressPanel.Visibility = Visibility.Visible;
             var items = new List<YoutubeVideoVM>();
-            var videoSearchResults = await _downloader.SearchVideo(keyword);
+            IEnumerable<VideoDetailModel>? videoSearchResults = null;
+            if (isUrl)
+            {
+                // Keyword is a URL
+                videoSearchResults = await _downloader.SearchVideoByUrl(keyword);
+            }
+            else
+            {
+                // Keyword is not a URL
+                videoSearchResults = await _downloader.SearchVideo(keyword, howMany);
+
+            }
             if (videoSearchResults == null)
             {
                 progressPanel.Visibility = Visibility.Collapsed;
@@ -48,6 +67,7 @@ namespace SGSMTube.Pages
                 video.PropertyChanged += Video_PropertyChanged;
                 items.Add(video);
             }
+
             dgVideos.ItemsSource = items;
             progressPanel.Visibility = Visibility.Collapsed;
         }
@@ -91,13 +111,14 @@ namespace SGSMTube.Pages
 
         private void UpdateSelectedVideoStatus()
         {
-            lblSelectedCount.Text = $"Count of videos selected to download : {_selectedVideos.Count}";
+            btnSelectedSongs.Content = $"Count of videos selected to download : {_selectedVideos.Count}";
         }
 
         private void btnDownloadNow_Click(object sender, RoutedEventArgs e)
         {
+            bool isAudioOnlyDownload = rdbAudioOnly.IsChecked == true;
             if (_selectedVideos.Any())
-                this.NavigationService.Navigate(new DownloadProgressPage(_selectedVideos));
+                this.NavigationService.Navigate(new DownloadProgressPage(_selectedVideos, isAudioOnlyDownload));
         }
 
         private void youtubeToMp3Page_Loaded(object sender, RoutedEventArgs e)
@@ -106,6 +127,12 @@ namespace SGSMTube.Pages
             {
                 NavigationService.RemoveBackEntry();
             }
+        }
+
+        private void btnSelectedSongs_Click(object sender, RoutedEventArgs e)
+        {
+            //SelectionViewerDialog dialog = new SelectionViewerDialog(Window.GetWindow(this));
+            //dialog.ShowDialog();
         }
     }
 }
