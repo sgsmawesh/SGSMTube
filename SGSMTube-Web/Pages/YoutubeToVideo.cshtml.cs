@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SGSMTube_Lib.Models;
 using System.Diagnostics;
 
-
 namespace SGSMTube_Web.Pages
 {
-    public class YoutubeToMp3Model : PageModel
+    public class YoutubeToVideoModel : PageModel
     {
         private readonly YTDownloader _downloader;
-        public YoutubeToMp3Model(YTDownloader downloader)
+        public YoutubeToVideoModel(YTDownloader downloader)
         {
             _downloader = downloader;
         }
@@ -17,14 +16,12 @@ namespace SGSMTube_Web.Pages
 
         public async Task<IActionResult> OnGetAsync(string videoUrl)
         {
-            //if (download)
-            //{
+
             Debug.WriteLine("Download started");
             IProgress<double> progress = new Progress<double>((p) => { Debug.WriteLine(p); });
-
             try
             {
-                var fileInfo = await _downloader.GetAudioOnlyStream(videoUrl, progress);
+                var fileInfo = await _downloader.GetMuxedVideoStream(videoUrl, progress);
 
                 if (fileInfo == null)
                 {
@@ -39,13 +36,6 @@ namespace SGSMTube_Web.Pages
                 Debug.WriteLine($"An error occurred: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
-            //}
-            //else
-            //{
-            //    return StatusCode(200);
-            //}
-            // Handle the case where download is false...
         }
-
     }
 }
