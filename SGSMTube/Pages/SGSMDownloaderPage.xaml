@@ -1,0 +1,44 @@
+﻿<Page x:Class="SGSMTube.Pages.SGSMDownloaderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:SGSMTube.Pages"
+      xmlns:uc="clr-namespace:SGSMTube.UserControls"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="SGSMDownloaderPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0">
+            <uc:HintTextBox Placeholder="Enter URL"
+                            Width="600" />
+            <Button x:Name="btnStartDownload"
+                    Content="Download"
+                    Style="{StaticResource FlatButton}"
+                    Click="btnStartDownload_Click" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1"
+                     Orientation="Vertical">
+            <TextBlock x:Name="lblFileSize"
+                       Foreground="{StaticResource ControlForegroundBrush}"
+                       FontSize="16"
+                       Text="File Size" />
+            <ProgressBar x:Name="progressBar"
+                         Minimum="0"
+                         Height="30"
+                         Maximum="99" />
+            <TextBlock x:Name="lblProgress"
+                       Foreground="{StaticResource ControlForegroundBrush}"
+                       FontSize="16"
+                       Text="Progress" />
+        </StackPanel>
+    </Grid>
+</Page>
