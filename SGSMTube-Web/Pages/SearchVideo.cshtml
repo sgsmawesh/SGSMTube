@@ -3,107 +3,96 @@
 @{
     ViewData["Title"] = "Search Video";
 }
-<h1 class="display-4">
-    Search Videos
-</h1>
-<div class="row">
-    <div class="offset-2 col-8">
-        <form method="post" asp-page-handler="OnPost">
-            <div class="input-group mb-3">
-                <input asp-for="Keyword" type="text" class="form-control" placeholder="Search or Paste video URL" aria-label="Search or Paste video URL" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+<div class="container">
+    <div class="row">
+        <div class="col-8 offset-2  mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Search your video</h3>
+                    <form method="post" asp-page-handler="OnPost">
+                        <div class="input-group mb-3">
+                            <input asp-for="Keyword" type="text" class="form-control" placeholder="Search or Paste video URL" aria-label="Search or Paste video URL" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+                        </div>
+                        <span asp-validation-for="Keyword" class="text-danger"></span>
+                    </form>
+                </div>
             </div>
-            <span asp-validation-for="Keyword" class="text-danger"></span>
-        </form>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
+    <div class="row">
+        <div class="col-12">
+            @if (Model!.Results!.Count() <= 0)
+            {
+                <div class="placeholder-glow">
+                    <span class="placeholder col-12"></span>
+                    <span class="placeholder w-75"></span>
+                    <span class="placeholder" style="width: 80%;"></span>
+                    <span class="placeholder col-12"></span>
+                    <span class="placeholder w-75"></span>
+                    <span class="placeholder" style="width: 80%;"></span>
+                    <span class="placeholder col-12"></span>
+                    <span class="placeholder w-75"></span>
+                    <span class="placeholder" style="width: 80%;"></span>
+                </div>
+            }
+            else
+            {
+                <div class="container mt-5">
+                    <div class="row">
+                        @foreach (var item in Model.Results!)
+                        {
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <img src="@item.ThumbnailImage" class="card-img" alt="@item.Title" style="height:300px">
+                                    <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                        <div class="mb-1">
+                                            <h6 class="o-card-text">
+                                                <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
+                                                    @item.Title
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mb-1">
+                                            <h5 class="o-card-text">
+                                                @item.Author
+                                            </h5>
+                                        </div>
+                                        <div>
+                                            <h4 class="o-card-text">
+                                                @if (item.Duration != null)
 
-
-        <div class="container mt-5">
-            <div class="row">
-                @foreach (var item in Model.Results!)
-                {
-                    <div class="col-md-6">
-                        <div class="card">
-                            <img src="@item.ThumbnailImage" class="card-img" alt="@item.Title" style="height:300px">
-                            <div class="card-img-overlay d-flex flex-column justify-content-end">
-                                    <div class="mb-1">
-                                        <h6 class="o-card-text">
-                                        <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
-                                                @item.Title
-                                            </a>
-                                        </h6>
+                                                {
+                                                    <span>
+                                                        @item.Duration.Value.ToString("hh\\:mm\\:ss")
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>00:00:00</span>
+                                                }
+                                            </h4>
+                                        </div>
+                                        <div>
+                                            <strong>
+                                                <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
+                                                    ♦ Download as Audio
+                                                </a>
+                                            </strong> |
+                                            <strong>
+                                                <a class="text-color" asp-page="/YoutubeToVideo" asp-route-videoUrl="@item.Url">
+                                                    ♦ Download as Video
+                                                </a>
+                                            </strong>
+                                        </div>
                                     </div>
-                                    <div class="mb-1">
-                                        <h5 class="o-card-text">
-                                            @item.Author
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <h4 class="o-card-text">
-                                        @if (item.Duration!=null)
-
-                                        {
-                                            <span>
-                                                @item.Duration.Value.ToString("hh\\:mm\\:ss")
-                                            </span>
-                                        }
-                                        else
-                                        {
-                                            <span>00:00:00</span>
-                                        }
-                                    </h4>
-                                </div>
-                                <div>
-                                    <strong>
-                                        <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
-                                            ♦ Download as Audio
-                                        </a>
-                                    </strong> | 
-                                    <strong>
-                                        <a class="text-color" asp-page="/YoutubeToVideo" asp-route-videoUrl="@item.Url">
-                                            ♦ Download as Video
-                                        </a>
-                                    </strong>
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
-                }
-            </div>
 
+                </div>
+            }
         </div>
-
-        <table class="d-none table table-secondary">
-            <thead>
-                <tr>
-                    <th>Thumbnail</th>
-                    <th>Duration</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Results)
-                {
-                    <tr>
-                        <td>
-                            <img src="@item.ThumbnailImage" style="width:300px; height:200px" />
-                        </td>
-                        <td>
-                            @item.Duration!.Value.ToString("hh\\:mm\\:ss")
-                        </td>
-                        <td>
-                            @item.Title
-                        </td>
-                        <td>
-                            @item.Author
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
 </div>
