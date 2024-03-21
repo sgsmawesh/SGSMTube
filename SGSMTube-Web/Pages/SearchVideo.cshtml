@@ -29,20 +29,22 @@
                         <div class="card">
                             <img src="@item.ThumbnailImage" class="card-img" alt="@item.Title" style="height:300px">
                             <div class="card-img-overlay d-flex flex-column justify-content-end">
+                                    <div class="mb-1">
+                                        <h6 class="o-card-text">
+                                        <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
+                                                @item.Title
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mb-1">
+                                        <h5 class="o-card-text">
+                                            @item.Author
+                                        </h5>
+                                    </div>
+                                    <div>
+                                        <h4 class="o-card-text">
+                                        @if (item.Duration!=null)
 
-                                <div class="mb-1">
-                                    <h6 class="card-text">
-                                        @item.Title
-                                    </h6>
-                                </div>
-                                <div class="mb-1">
-                                    <h5 class="card-text">
-                                        @item.Author
-                                    </h5>
-                                </div>
-                                <div class="mb-1">
-                                    <h4 class="card-text">
-                                        @if (item.Duration != null)
                                         {
                                             <span>
                                                 @item.Duration.Value.ToString("hh\\:mm\\:ss")
