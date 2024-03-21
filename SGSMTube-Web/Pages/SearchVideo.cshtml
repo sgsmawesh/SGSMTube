@@ -7,10 +7,10 @@
     Search Videos
 </h1>
 <div class="row">
-    <div class="col-8">
+    <div class="offset-2 col-8">
         <form method="post" asp-page-handler="OnPost">
             <div class="input-group mb-3">
-                <input asp-for="Keyword" type="text" class="form-control" placeholder="Search your video here" aria-label="Search your video here" aria-describedby="button-addon2">
+                <input asp-for="Keyword" type="text" class="form-control" placeholder="Search or Paste video URL" aria-label="Search or Paste video URL" aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
             </div>
             <span asp-validation-for="Keyword" class="text-danger"></span>
@@ -29,7 +29,6 @@
                         <div class="card">
                             <img src="@item.ThumbnailImage" class="card-img" alt="@item.Title" style="height:300px">
                             <div class="card-img-overlay d-flex flex-column justify-content-end">
-                                
                                     <div class="mb-1">
                                         <h6 class="o-card-text">
                                         <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
@@ -45,17 +44,30 @@
                                     <div>
                                         <h4 class="o-card-text">
                                         @if (item.Duration!=null)
+
                                         {
-                                         <span>
-                                        @item.Duration.Value.ToString("hh\\:mm\\:ss")
+                                            <span>
+                                                @item.Duration.Value.ToString("hh\\:mm\\:ss")
                                             </span>
-                                        }else
+                                        }
+                                        else
                                         {
                                             <span>00:00:00</span>
                                         }
                                     </h4>
-                                    </div>
-                                 
+                                </div>
+                                <div>
+                                    <strong>
+                                        <a class="text-color" asp-page="/YoutubeToMp3" asp-route-videoUrl="@item.Url">
+                                            ♦ Download as Audio
+                                        </a>
+                                    </strong> | 
+                                    <strong>
+                                        <a class="text-color" asp-page="/YoutubeToVideo" asp-route-videoUrl="@item.Url">
+                                            ♦ Download as Video
+                                        </a>
+                                    </strong>
+                                </div>
                             </div>
                         </div>
                     </div>

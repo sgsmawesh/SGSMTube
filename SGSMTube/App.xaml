@@ -56,6 +56,42 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
+        <Style x:Key="FlatToggleButton"
+               TargetType="ToggleButton">
+            <Setter Property="FontSize"
+                    Value="16" />
+            <Setter Property="Background"
+                    Value="{StaticResource ControlBackgroundBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ControlForegroundBrush}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ControlForegroundBrush}" />
+
+            <Setter Property="Cursor"
+                    Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                                Padding="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                    <Setter Property="Foreground"
+                            Value="{StaticResource ControlForegroundBrush}" />
+                    <Setter Property="Background"
+                            Value="{StaticResource ProgressBarForegroundBrush}" />
+
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -21,15 +21,23 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal">
-            <uc:HintTextBox Placeholder="Enter your search term here"
+
+            <uc:HintTextBox Placeholder="Search or Paste URL"
                             x:Name="txtSearchTerm"
                             Margin="2"
                             Width="400" />
+            <uc:HintTextBox Placeholder="How many results you want"
+                            ToolTip="How many search results you want? [1-300, More results, more time]"
+                            x:Name="txtHowManyResults"
+                            Margin="2"
+                            Width="80"
+                            Text="10"/>
             <Button Content="Search"
                     Style="{StaticResource FlatButton}"
                     x:Name="btnSearch"
                     Margin="0 2 2 2"
                     Click="btnSearch_Click" />
+
         </StackPanel>
         <DockPanel x:Name="progressPanel"
                    Grid.Row="1"
@@ -62,7 +70,9 @@
                     <DataGridTemplateColumn Header="Thumbnail">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding ThumbnailImage}" Height="100" Width="160" />
+                                <Image Source="{Binding ThumbnailImage}"
+                                       Height="100"
+                                       Width="160" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -104,21 +114,38 @@
         </DockPanel>
         <DockPanel Grid.Row="3">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Padding="4"
-                           FontSize="16"
-                           Margin="4 0 10 0"
-                           x:Name="lblSelectedCount"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Stretch"
-                           Foreground="{StaticResource ControlForegroundBrush}"
-                           Text="Selected : " />
+                <Button Padding="4"
+                        FontSize="16"
+                        Style="{StaticResource FlatButton}"
+                        Margin="4 0 10 0"
+                        x:Name="btnSelectedSongs"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Stretch"
+                        Foreground="{StaticResource ControlForegroundBrush}"
+                        Content="Selected : "
+                        Click="btnSelectedSongs_Click" />
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton x:Name="rdbAudioOnly"
+                                 Content="Audio Only"
+                                 Foreground="{StaticResource ControlForegroundBrush}"
+                                 VerticalAlignment="Center"
+                                 IsChecked="True" />
+                    <RadioButton x:Name="rdbVideo"
+                                 Content="Video"
+                                 Margin="5 0 5 0"
+                                 Foreground="{StaticResource ControlForegroundBrush}"
+                                 VerticalAlignment="Center" />
+                </StackPanel>
                 <Button x:Name="btnDownloadNow"
                         Style="{StaticResource FlatButton}"
                         Padding="4"
                         FontSize="16"
                         Content="Download Now"
                         Click="btnDownloadNow_Click" />
+
             </StackPanel>
+
         </DockPanel>
     </Grid>
+
 </Page>
