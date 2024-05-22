@@ -1,4 +1,6 @@
-﻿using NReco.VideoConverter;
+﻿using FFMpegCore;
+using FFMpegCore.Pipes;
+using NReco.VideoConverter;
 using SGSMTube_Lib.Views;
 using System.Drawing;
 using YoutubeExplode;
@@ -86,6 +88,7 @@ namespace SGSMTube_Lib.Models
 
             return new Tuple<Stream, string>(stream, videoFileName);
         }
+
         public async Task<Tuple<Stream, string>> GetAudioOnlyStream(string videoUrl, IProgress<double>? progress)
         {
             var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
@@ -98,6 +101,28 @@ namespace SGSMTube_Lib.Models
             stream.Seek(0, SeekOrigin.Begin);
 
             return new Tuple<Stream, string>(stream, videoFileName);
+        }
+        public async Task<Tuple<byte[], string>> GetAudioOnlyStream_v2(string videoUrl, IProgress<double>? progress)
+        {
+            var videoInfo = await _youtubeClient.Videos.GetAsync(videoUrl);
+            var streamManifest = await _youtubeClient.Videos.Streams.GetManifestAsync(videoUrl);
+            var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            string extn = streamInfo.Container.Name.ToLower();
+            string videoFileNameWithoutExtn = Utils.CleanFileName($"{videoInfo.Title}-{videoInfo.Author.ChannelTitle}");
+            string videoFileName = $"{videoFileNameWithoutExtn}.{extn}";
+            string tempVidFilePath = Path.Combine(Path.GetTempPath(), videoFileName);
+            string tempMp3Path = Path.Combine(Path.GetTempPath(), $"{videoFileNameWithoutExtn}.mp3");
+
+            using var stream = await _youtubeClient.Videos.Streams.GetAsync(streamInfo);
+
+            await using var audioOutputStream = File.Open(tempMp3Path, FileMode.OpenOrCreate);
+            using (var aStream = new MemoryStream())
+            {
+                FFMpegArguments.FromPipeInput(new StreamPipeSource(stream))
+                    .OutputToPipe(new StreamPipeSink(aStream), options => { options.ForceFormat("mp3"); }).ProcessSynchronously();
+                aStream.Seek(0, SeekOrigin.Begin);
+                return new Tuple<byte[], string>(aStream.ToArray(), $"{videoFileNameWithoutExtn}.mp3");
+            }
         }
 
         public async Task<string> ConvertVideoToMp3(string vidFilePath)
