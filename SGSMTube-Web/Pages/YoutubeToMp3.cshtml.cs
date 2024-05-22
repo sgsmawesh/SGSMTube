@@ -24,7 +24,8 @@ namespace SGSMTube_Web.Pages
 
             try
             {
-                var fileInfo = await _downloader.GetAudioOnlyStream(videoUrl, progress);
+
+                var fileInfo = await _downloader.GetAudioOnlyStream_v2(videoUrl, progress); // await _downloader.GetAudioOnlyStream(videoUrl, progress);
 
                 if (fileInfo == null)
                 {
